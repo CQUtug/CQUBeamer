@@ -1,0 +1,232 @@
+% Layout scheme for outer elements: split header and footer
+\useoutertheme{split}
+
+% Color scheme for outer elements: use background colors
+\usecolortheme{whale}
+
+% Layout scheme for inner elements: rounded elements
+\useinnertheme{rounded}
+
+% Color scheme for inner elements: use foreground colors
+\usecolortheme{orchid}
+
+% Itemize items: default (triangle), circle, square, ball
+\setbeamertemplate{itemize items}[circle]
+
+% Enumerate items: default, circle, square, ball
+\setbeamertemplate{enumerate items}[circle]
+
+% Outline: default, sections numbered, subsections numbered, circle, square, ball, ball unnumbered
+\setbeamertemplate{sections/subsections in toc}[default]
+
+% General blocks:
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+% Title page:
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+
+% Part page:
+\setbeamertemplate{part page}[default][colsep=-4bp,rounded=true]
+
+% Background
+%\pgfdeclareimage[width=\paperwidth,height=0.95\paperheight]{bg}{njubackground}
+%\setbeamertemplate{background}{\pgfuseimage{bg}}
+
+% Colors
+\usecolortheme[RGB={36,73,164}]{structure}
+
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=subsection in head/foot}
+
+
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+    color(0pt)=(bg);
+    color(4pt)=(black!50!bg)}
+}
+
+%%% 设置目录页各级标题显示与否
+\AtBeginSection[]{ 
+  \begin{frame}
+   \frametitle{目录}
+    \begin{multicols}{2}
+     \tableofcontents[current, subsubsectionstyle=hide] %subsubsectionstyle=hide 目录页隐藏三级标题，但书签中存在
+%     \tableofcontents[current, currentsubsection]   
+    \end{multicols}
+  \addtocounter{framenumber}{-1} 
+  \end{frame}
+}
+
+
+% footline: author | title | date and framenumber
+
+\defbeamertemplate*{footline}{cqu theme}{%
+\setbeamercolor{footcolor}{fg=while,bg=blue!55}
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.30\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{author in head/foot}{\insertshortauthor}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.40\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+     \usebeamerfont{title in head/foot}{\insertshorttitle}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.30\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}{\insertdate}
+      \hspace*{2em}  
+      \insertframenumber{}/\inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+
+
+\defbeamertemplate*{headline}{cqu theme}{%
+  \leavevmode%
+  \@tempdimb=6.4375ex%
+    \pgfdeclareimage[height=.95\@tempdimb]{logo}{logo/cqulogo.pdf}%
+    \pgfdeclareimage[height=1.\@tempdimb]{title_logo}{logo/cquname.pdf}%
+    %\pgfdeclareimage[height=1.\@tempdimb]{math_logo}{njumath.png}%
+  \logo{\pgfuseimage{logo}}%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=\@tempdimb,center]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsectionnavigationhorizontal{.5\textwidth}{\hskip0pt 
+      plus1filll}{}\vfil}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.135\paperwidth,ht=\@tempdimb,center]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\pgfuseimage{title_logo}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.065\paperwidth,ht=\@tempdimb,center]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertlogo\vfil\vfil}%
+    \end{beamercolorbox}%
+  \fi%
+}
+
+\defbeamertemplate*{frametitle}{cqu theme}{%
+  \nointerlineskip%
+  \hbox{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp %
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \leftskip0.3cm%
+          \rightskip= 0pt plus1fil \leavevmode
+          \insertframetitle%
+          \ifx\insertframesubtitle\@empty%
+            \strut\par%
+          \else
+            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[bg]{framesubtitle}\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 2pt%
+      \begin{pgfpicture}{0mm}{0pt}{\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+        \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+}
+
+%%% 定制封面页
+\makeatletter
+\defbeamertemplate*{title page}{mydefault}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \parbox{.55\paperwidth}{   % 修改数字调整标题页中标题背景框长度
+    \begin{beamercolorbox}[wd=\linewidth,sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    }
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+\setbeamertemplate{title page}[mydefault][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+\makeatother
+
+
+\usepackage{hyperref}   % 超链接相关设置
+\hypersetup{
+      pdftitle = {},
+	  pdfauthor = {},
+	  linktoc=all,
+	  bookmarksnumbered=true,  %书签编号
+	  bookmarksopen=true,
+	  bookmarksopenlevel=4,
+	  breaklinks=true,
+      colorlinks=false,
+      linkcolor=blue,
+      anchorcolor=black,
+      citecolor=green,
+      urlcolor=magenta
+}
+
+%%% 书签章节从1开始编号
+\setcounter{tocdepth}{4}
+% get numbering in section bookmarks
+\usepackage{etoolbox}
+\usepackage{bookmark}
+\makeatletter
+
+\newcounter{realsection}
+\newif\ifrealsection
+\long\def\beamer@@ssection*#1{\realsectionfalse\beamer@section[{#1}]{}}
+\long\def\beamer@@@section#1{\realsectiontrue\beamer@section[{#1}]{#1}}
+
+\patchcmd{\beamer@section}%
+    {\refstepcounter{section}}%
+    {\ifrealsection\refstepcounter{realsection}\fi\refstepcounter{section}}%
+    {}{\errmessage{failed to patch}}
+
+\patchcmd{\beamer@section}%
+    {\Hy@writebookmark{\the\c@section}{\secname}}%
+    {\Hy@writebookmark{\the\c@section}{\numberline{\therealsection}\secname}}%
+    {}{\errmessage{failed to patch}}
+\patchcmd{\beamer@subsection}%
+   {\Hy@writebookmark{\the\c@subsection}{#2}}%
+    {\Hy@writebookmark{\the\c@subsection}{\numberline{\therealsection.\thesubsection}#2}}%
+    {}{\errmessage{failed to patch}}
+\patchcmd{\beamer@subsubsection}%
+    {\Hy@writebookmark{\the\c@subsubsection}{#2}}%
+    {\Hy@writebookmark{\the\c@subsubsection}{\numberline{\therealsection.\thesubsection.\thesubsubsection}#2}}%
+    {}{\errmessage{failed to patch}}
+\makeatother
+
+
+%%% 每页脚注从“1”开始编号
+\usepackage{perpage}
+\MakePerPage{footnote}
