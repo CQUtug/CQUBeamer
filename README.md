@@ -1,7 +1,7 @@
 # Welcome
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT) 
 [![GitHub release](https://img.shields.io/badge/Github-V1.1-519dd9.svg)](https://github.com/CQUtug/CQUBeamer)
-[![GitHub commits](https://img.shields.io/badge/commits-1-519dd9.svg)](https://github.com/CQUtug/CQUBeamer/issues)
+[![GitHub commits](https://img.shields.io/badge/commits since 1.1-1-519dd9.svg)](https://github.com/CQUtug/CQUBeamer/issues)
 ![](https://img.shields.io/badge/language-Tex-orange.svg)
 
 ## What is the CQUBeamerTemplate?
