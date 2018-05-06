@@ -1,7 +1,8 @@
 # Welcome
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT) 
 [![GitHub release](https://img.shields.io/badge/Github-V1.1-519dd9.svg)](https://github.com/CQUtug/CQUBeamer)
-[![GitHub commits](https://img.shields.io/github/commits-since/CQUtug/TeXProposal/1.1.svg)](https://github.com/CQUtug/CQUBeamer/issues)
+[![GitHub commits](https://img.shields.io/badge/commits since-1-519dd9.svg)](https://github.com/CQUtug/CQUBeamer/issues)
+![](https://img.shields.io/badge/language-Tex-orange.svg)
 
 ## What is the CQUBeamerTemplate?
 CQUBeamerTemplate is a LaTex Beamer Template designed for researchers of Chongqing University. It is developed based on [njumath_beamer](https://github.com/YLiu1231/njumath_beamer). This template can be used for academic report, conference or thesis defense, which is helpful for one to deliver a speech.
